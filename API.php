@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: application/json");
 
 class WilayahAdministratif
 {
@@ -185,4 +186,19 @@ class WilayahAdministratif
 	function getProvince($id){
 		return $this->db->query("SELECT * FROM provinces WHERE id = '$id'")->getRow();
 	}
+}
+
+function showTrue($data){
+	$resp['success'] = true;
+	$resp['time'] = time();
+	$resp['data'] = $data;
+	echo json_encode($resp);
+	die;
+}
+function showFalse($errno, $errme){
+	$resp['success'] = false;
+	$resp['errno'] = $errno;
+	$resp['message'] = $errme;
+	echo json_encode($resp);
+	die;
 }
