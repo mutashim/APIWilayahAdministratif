@@ -41,7 +41,10 @@ class WilayahAdministratif
 			showTrue($this->getProvince($id));
 		}
 	}	
-	public function province($id){
+	public function province($id = null){
+		if($id == null){
+			showFalse(400, "invalid parameter");
+		}
 		$data = $this->getProvince($id);
 		//$data['cities'] = $this->getRegencies($id);
 		showTrue($data);
@@ -59,6 +62,9 @@ class WilayahAdministratif
 	}
 	public function city($id = null)
 	{
+		if($id == null){
+			showFalse(400, "invalid parameter");
+		}
 		$data = $this->getRegency($id);
 		//$data['districts'] = $this->getDistricts($id);
 		showTrue($data);
@@ -72,7 +78,7 @@ class WilayahAdministratif
 	public function districts($id = null)
 	{
 		if($id == null){
-			showFalse(400, "parameter province required");
+			showFalse(400, "invalid parameter");
 		}
 
 		$data['regency'] = $this->getRegency($id);
@@ -82,7 +88,7 @@ class WilayahAdministratif
 	public function district($id = null)
 	{
 		if($id == null){
-			showFalse(400, "parameter distric id required");
+			showFalse(400, "invalid parameter");
 		}
 		
 		$data = $this->getDistrict($id);
@@ -92,7 +98,7 @@ class WilayahAdministratif
 	public function villages($id = null)
 	{
 		if($id == null){
-			showFalse(400, "parameter distric id required");
+			showFalse(400, "invalid parameter");
 		}
 		
 		$data['distric'] = $this->getDistrict($id);
@@ -101,13 +107,18 @@ class WilayahAdministratif
 		
 	}
 	public function village($id){
+		
+		if($id == null){
+			showFalse(400, "invalid parameter");
+		}
+		
 		showTrue($this->getVillage($id));
 	}
 	
 	public function id($wilayahid = null)
 	{
 		if($wilayahid == null){
-			showFalse(400, "parameter distric id required");
+			showFalse(400, "invalid parameter");
 		}
 		
 		$data = [];	
